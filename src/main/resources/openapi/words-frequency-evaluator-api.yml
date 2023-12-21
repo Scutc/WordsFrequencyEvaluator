@@ -8,22 +8,25 @@ paths:
   /words:
     get:
       tags:
-        - Words
+        - Word
       operationId: getWords
       summary: Provides words frequently statistics
       responses:
         '200':
           description: OK
-        'default':
-          description: An error occurred
           content:
             text/plain:
               schema:
                 type: string
-                example: Error description here
+        'default':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       tags:
-        - Words
+        - Word
       operationId: addWords
       summary: Adding words in storage
       requestBody:
@@ -38,12 +41,11 @@ paths:
         '201':
           description: OK
         'default':
-          description: An error occurred
+          description: error
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: Error description here
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Words:
@@ -61,3 +63,18 @@ components:
           type: string
           description: Median words frequency
           example: 5
+    Error:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: Internal error code. Filled if status <> 2xx
+          example: WFE-100
+        errorMessage:
+          type: string
+          description: Error description. Filled if status <> 2xx
+          example: Error description
+        traceId:
+          type: string
+          description: Trace ID. Filled if status <> 2xx
+          example: 8aa83093370c12f8

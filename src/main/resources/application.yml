@@ -1,0 +1,15 @@
+micronaut:
+    server.port: 7070
+    application:
+        name: wordsFrequencyEvaluator
+    security:
+        enabled: false
+    router:
+      static-resources:
+        swagger:
+            enabled: true
+
+swagger:
+    urls:
+        url: openapi/words-frequency-evaluator-api.yml
+
