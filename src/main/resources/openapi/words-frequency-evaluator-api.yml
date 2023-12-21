@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: WORDS-FREQUENCY-EVALUATOR
+  version: 1.0.0
+  description: Service for adding words and getting statistics on them
+
+paths:
+  /words:
+    get:
+      tags:
+        - Words
+      operationId: getWords
+      summary: Provides words frequently statistics
+      responses:
+        '200':
+          description: OK
+        'default':
+          description: An error occurred
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Error description here
+    post:
+      tags:
+        - Words
+      operationId: addWords
+      summary: Adding words in storage
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: A string of comma-separated words
+              example: ball,eggs,pool,dart,ball,ball
+      responses:
+        '201':
+          description: OK
+        'default':
+          description: An error occurred
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Error description here
+components:
+  schemas:
+    Words:
+      type: object
+      properties:
+        top5:
+          type: string
+          description: Top 5 words
+          example: Ball 4
+        least:
+          type: string
+          description: Least word frequency
+          example: 1
+        median:
+          type: string
+          description: Median words frequency
+          example: 5
