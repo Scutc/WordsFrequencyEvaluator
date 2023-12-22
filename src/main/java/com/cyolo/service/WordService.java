@@ -5,5 +5,5 @@ import com.cyolo.model.WordsStatistic;
 public interface WordService {
     void addWord(String words);
 
-    WordsStatistic getWordStatistics();
+    WordsStatistic getWordsStatistic();
 }

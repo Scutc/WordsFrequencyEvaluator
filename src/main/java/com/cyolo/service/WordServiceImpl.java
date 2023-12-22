@@ -25,7 +25,7 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public WordsStatistic getWordStatistics() {
+    public WordsStatistic getWordsStatistic() {
         List<WordFrequency> wordFrequenciesSortedDesc = wordStorageService.getWordFrequenciesSortedDesc();
 
         if (wordFrequenciesSortedDesc.isEmpty()) {

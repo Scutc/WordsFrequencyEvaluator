@@ -1,6 +1,6 @@
 package com.cyolo.controller;
 
-import com.cyolo.mapper.WordMapper;
+import com.cyolo.controller.mapper.WordMapper;
 import com.cyolo.model.WordsStatistic;
 import com.cyolo.service.WordService;
 import io.micronaut.http.annotation.Controller;
@@ -19,7 +19,7 @@ public class WordController implements WordApi {
 
     @Override
     public String getWords() {
-        WordsStatistic wordsStatistic = wordService.getWordStatistics();
+        WordsStatistic wordsStatistic = wordService.getWordsStatistic();
         return wordMapper.fromWordsStatistic(wordsStatistic);
     }
 }

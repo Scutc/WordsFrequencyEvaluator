@@ -10,14 +10,14 @@ paths:
       tags:
         - Word
       operationId: getWords
-      summary: Provides words frequently statistics
+      summary: Provides words frequency statistic
       responses:
         '200':
           description: OK
           content:
             text/plain:
               schema:
-                type: string
+                $ref: '#/components/schemas/Words'
         'default':
           description: error
           content:
@@ -49,20 +49,7 @@ paths:
 components:
   schemas:
     Words:
-      type: object
-      properties:
-        top5:
-          type: string
-          description: Top 5 words
-          example: Ball 4
-        least:
-          type: string
-          description: Least word frequency
-          example: 1
-        median:
-          type: string
-          description: Median words frequency
-          example: 5
+      type: string
     Error:
       type: object
       properties:

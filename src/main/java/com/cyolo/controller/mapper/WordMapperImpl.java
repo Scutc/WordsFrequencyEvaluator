@@ -1,4 +1,4 @@
-package com.cyolo.mapper;
+package com.cyolo.controller.mapper;
 
 import com.cyolo.model.WordsStatistic;
 import jakarta.inject.Singleton;
