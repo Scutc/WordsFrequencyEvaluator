@@ -3,7 +3,8 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.2.1"
     id("io.micronaut.aot") version "4.2.1"
-    id ('io.micronaut.openapi') version "4.2.1"
+    id("io.micronaut.openapi") version "4.2.1"
+    id("checkstyle")
 }
 
 version = "1.0"
@@ -38,6 +39,11 @@ application {
 java {
     sourceCompatibility = JavaVersion.toVersion("17")
     targetCompatibility = JavaVersion.toVersion("17")
+}
+
+checkstyle {
+    configFile = file("${rootProject.projectDir}/config/checkstyle/wfe-checkstyle.xml")
+    checkstyleMain.source = "src/main/java"
 }
 
 graalvmNative.toolchainDetection = false

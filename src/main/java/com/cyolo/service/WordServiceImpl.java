@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.cyolo.error.WordsFrequencyEvaluatorError.NO_WORDS_PROVIDED;
-import static com.cyolo.error.WordsFrequencyEvaluatorError.WORDS_NOT_FOUND;
-
-import com.cyolo.model.WordFrequency;
 import com.cyolo.error.BaseException;
+import com.cyolo.model.WordFrequency;
 import com.cyolo.model.WordsStatistic;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
+
+import static com.cyolo.error.WordsFrequencyEvaluatorError.NO_WORDS_PROVIDED;
+import static com.cyolo.error.WordsFrequencyEvaluatorError.WORDS_NOT_FOUND;
 
 @Singleton
 @RequiredArgsConstructor

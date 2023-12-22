@@ -1,11 +1,11 @@
 package com.cyolo.error;
 
-import static io.micronaut.http.HttpStatus.BAD_REQUEST;
-import static io.micronaut.http.HttpStatus.NOT_FOUND;
-
 import io.micronaut.http.HttpStatus;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import static io.micronaut.http.HttpStatus.BAD_REQUEST;
+import static io.micronaut.http.HttpStatus.NOT_FOUND;
 
 @Getter
 @RequiredArgsConstructor

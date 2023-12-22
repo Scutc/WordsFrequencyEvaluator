@@ -1,6 +1,5 @@
 package com.cyolo.error;
 
-
 import lombok.Getter;
 
 @Getter

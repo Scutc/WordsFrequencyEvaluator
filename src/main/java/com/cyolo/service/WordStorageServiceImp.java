@@ -1,9 +1,10 @@
 package com.cyolo.service;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 
 import com.cyolo.model.WordFrequency;
 import jakarta.inject.Singleton;
@@ -14,16 +15,15 @@ public class WordStorageServiceImp implements WordStorageService {
 
     @Override
     public void addWords(List<String> words) {
-        for (String word : words) {
-            wordStatisticsStorage.merge(word, 1, Integer::sum);
-        }
+        words.forEach(word -> wordStatisticsStorage.merge(word, 1, Integer::sum));
     }
 
     @Override
     public List<WordFrequency> getWordFrequenciesSortedDesc() {
-        List<WordFrequency> wordFrequencies = new ArrayList<>();
-        wordStatisticsStorage.forEach((key, value) -> wordFrequencies.add(new WordFrequency(key, value)));
-        wordFrequencies.sort((t1, t2) -> t2.frequency().compareTo(t1.frequency()));
-        return wordFrequencies;
+        return wordStatisticsStorage.entrySet()
+            .stream()
+            .map(entry -> new WordFrequency(entry.getKey(), entry.getValue()))
+            .sorted(Comparator.comparingInt(WordFrequency::frequency).reversed())
+            .collect(Collectors.toList());
     }
 }

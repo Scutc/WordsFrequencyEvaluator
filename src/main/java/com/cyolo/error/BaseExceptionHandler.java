@@ -1,17 +1,15 @@
 package com.cyolo.error;
 
-import static com.cyolo.error.CommonError.SERVICE_ERROR;
-
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.server.exceptions.ExceptionHandler;
-
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.SpanContext;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import static com.cyolo.error.CommonError.SERVICE_ERROR;
 
 @Singleton
 @Slf4j
@@ -45,7 +43,7 @@ public class BaseExceptionHandler implements ExceptionHandler<RuntimeException, 
         ErrorInfo errorInfo = ErrorInfo.builder()
             .errorMessage(description)
             .errorCode(error.getCode())
-            .errorCause(cause == null ? null :String.valueOf(cause))
+            .errorCause(cause == null ? null : String.valueOf(cause))
             .traceId(traceId)
             .build();
         return HttpResponse.status(error.getHttpStatus()).body(errorInfo);

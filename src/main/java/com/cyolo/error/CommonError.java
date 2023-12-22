@@ -1,10 +1,10 @@
 package com.cyolo.error;
 
-import static io.micronaut.http.HttpStatus.INTERNAL_SERVER_ERROR;
-
 import io.micronaut.http.HttpStatus;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import static io.micronaut.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @Getter
 @RequiredArgsConstructor
