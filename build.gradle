@@ -54,15 +54,6 @@ micronaut {
         incremental(true)
         annotations("${servicePackage}.*")
     }
-    aot {
-        optimizeServiceLoading = false
-        convertYamlToJava = false
-        precomputeOperations = true
-        cacheEnvironment = true
-        optimizeClassLoading = true
-        deduceEnvironment = true
-        optimizeNetty = true
-    }
     openapi {
         server(file("${openapiSpecPath}")) {
             apiPackageName = "${servicePackage}.controller"
