@@ -5,11 +5,10 @@ micronaut:
     security:
         enabled: false
     router:
-      static-resources:
-        swagger:
-            enabled: true
-
-swagger:
-    urls:
-        url: openapi/words-frequency-evaluator-api.yml
-
+        static-resources:
+            swagger:
+                paths: classpath:META-INF/swagger
+                mapping: /swagger/**
+            swagger-ui:
+                paths: classpath:META-INF/swagger/views/swagger-ui
+                mapping: /swagger-ui/**

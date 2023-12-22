@@ -3,7 +3,9 @@ package com.cyolo.controller;
 import com.cyolo.controller.mapper.WordMapper;
 import com.cyolo.model.WordsStatistic;
 import com.cyolo.service.WordService;
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Status;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -13,6 +15,7 @@ public class WordController implements WordApi {
     private final WordMapper wordMapper;
 
     @Override
+    @Status(HttpStatus.CREATED)
     public void addWords(String body) {
         wordService.addWord(body);
     }
