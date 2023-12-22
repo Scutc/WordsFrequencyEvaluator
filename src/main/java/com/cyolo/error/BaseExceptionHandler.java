@@ -45,7 +45,7 @@ public class BaseExceptionHandler implements ExceptionHandler<RuntimeException, 
         ErrorInfo errorInfo = ErrorInfo.builder()
             .errorMessage(description)
             .errorCode(error.getCode())
-            .errorCause(String.valueOf(cause))
+            .errorCause(cause == null ? null :String.valueOf(cause))
             .traceId(traceId)
             .build();
         return HttpResponse.status(error.getHttpStatus()).body(errorInfo);

@@ -25,7 +25,7 @@ public class BaseErrorResponseProcessor implements ErrorResponseProcessor<ErrorI
         ErrorInfo errorInfo = ErrorInfo.builder()
             .errorMessage(response.reason())
             .errorCode(BASE_ERROR_CODE)
-            .errorCause(String.valueOf(cause))
+            .errorCause(cause == null ? null : String.valueOf(cause))
             .traceId(errorUUID.toString())
             .build();
         return response.body(errorInfo);

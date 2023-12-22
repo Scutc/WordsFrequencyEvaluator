@@ -1,5 +1,7 @@
 package com.cyolo.controller;
 
+import com.cyolo.mapper.WordMapper;
+import com.cyolo.model.WordsStatistic;
 import com.cyolo.service.WordService;
 import io.micronaut.http.annotation.Controller;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WordController implements WordApi {
     private final WordService wordService;
+    private final WordMapper wordMapper;
 
     @Override
     public void addWords(String body) {
@@ -16,6 +19,7 @@ public class WordController implements WordApi {
 
     @Override
     public String getWords() {
-        return wordService.getWordStatistics();
+        WordsStatistic wordsStatistic = wordService.getWordStatistics();
+        return wordMapper.fromWordsStatistic(wordsStatistic);
     }
 }

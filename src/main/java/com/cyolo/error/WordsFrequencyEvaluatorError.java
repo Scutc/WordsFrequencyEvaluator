@@ -9,9 +9,9 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum WordsFrequencyEvaluatorException implements BaseError {
+public enum WordsFrequencyEvaluatorError implements BaseError {
     WORDS_NOT_FOUND("WFE-001", NOT_FOUND, "Words not found"),
-    INVALID_WORDS_FORMAT("WFE-002", BAD_REQUEST, "Input words have invalid format");
+    NO_WORDS_PROVIDED("WFE-002", BAD_REQUEST, "No words provided by request");
 
     private final String code;
     private final HttpStatus httpStatus;
