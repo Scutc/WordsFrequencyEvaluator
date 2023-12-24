@@ -1,9 +1,14 @@
 micronaut:
-    server.port: 7070
+    server.port: 8080
     application:
         name: wordsFrequencyEvaluator
     security:
         enabled: false
+    metrics:
+        enabled: true
+        export:
+            prometheus:
+                enabled: true
     router:
         static-resources:
             swagger:
@@ -12,6 +17,16 @@ micronaut:
             swagger-ui:
                 paths: classpath:META-INF/swagger/views/swagger-ui
                 mapping: /swagger-ui/**
+
+endpoints:
+    all:
+        enabled: false
+        sensitive: false
+        port: 8084
+    metrics:
+        enabled: true
+    prometheus:
+        enabled: true
 
 server:
     filter:

@@ -2,9 +2,9 @@ package com.cyolo;
 
 import io.micronaut.runtime.Micronaut;
 
-public class WordsFrequencyEvaluator {
+public class WordsFrequencyEvaluatorApp {
 
     public static void main(String[] args) {
-        Micronaut.run(WordsFrequencyEvaluator.class, args);
+        Micronaut.run(WordsFrequencyEvaluatorApp.class, args);
     }
 }

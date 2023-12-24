@@ -10,7 +10,7 @@ paths:
       tags:
         - Word
       operationId: getWords
-      summary: Provides words frequency statistic. Top 5 recurring words, Minimum frequency among all words, The median frequency"
+      summary: Provides words frequency statistic. Top 5 recurring words, Minimum frequency among all words, The median frequency
       responses:
         '200':
           description: OK
