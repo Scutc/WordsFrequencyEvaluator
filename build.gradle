@@ -70,12 +70,12 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             element = "CLASS"
-            excludes = ["com.cyolo.WordsFrequencyEvaluatorApp",
-                        "com.cyolo.controller.mapper.*",
-                        "com.cyolo.log.*",
-                        "com.cyolo.DTO.*",
-                        "com.cyolo.error.*",
-                        "com.cyolo.model.*"]
+            excludes = ["com.cyolo.words.frequency.evaluator.WordsFrequencyEvaluatorApp",
+                        "com.cyolo.words.frequency.evaluator.controller.mapper.*",
+                        "com.cyolo.words.frequency.evaluator.log.*",
+                        "com.cyolo.words.frequency.evaluator.DTO.*",
+                        "com.cyolo.words.frequency.evaluator.error.*",
+                        "com.cyolo.words.frequency.evaluator.model.*"]
             limit {
                 counter = "LINE"
                 minimum = 0.8
