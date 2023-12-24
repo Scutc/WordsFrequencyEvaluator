@@ -3,7 +3,6 @@ package com.cyolo.error;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.http.server.exceptions.response.Error;
 import io.micronaut.http.server.exceptions.response.ErrorContext;
@@ -12,7 +11,6 @@ import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
 @Singleton
-@Requires
 @Slf4j
 public class BaseErrorResponseProcessor implements ErrorResponseProcessor<ErrorInfo> {
     private static final String BASE_ERROR_CODE = "BASE-ERROR-001";

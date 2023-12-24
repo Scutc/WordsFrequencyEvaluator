@@ -10,7 +10,7 @@ paths:
       tags:
         - Word
       operationId: getWords
-      summary: Provides words frequency statistic
+      summary: Provides words frequency statistic. Top 5 recurring words, Minimum frequency among all words, The median frequency"
       responses:
         '200':
           description: OK
@@ -28,7 +28,7 @@ paths:
       tags:
         - Word
       operationId: addWords
-      summary: Adding words in storage
+      summary: Adds words in storage. Accept a string of comma-separated words
       requestBody:
         required: true
         content:
@@ -64,4 +64,4 @@ components:
         traceId:
           type: string
           description: Trace ID. Filled if status <> 2xx
-          example: 8aa83093370c12f8
+          example: ed7a9f7d-466c-433e-9ad4-3900dc936d19
