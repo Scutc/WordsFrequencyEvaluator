@@ -19,7 +19,7 @@ public class WordServiceImpl implements WordService {
     private final WordStorageService wordStorageService;
 
     @Override
-    public void addWord(String inputWords) {
+    public void addWords(String inputWords) {
         List<String> separatedTrimmedWords = splitAndTrimWords(inputWords);
         wordStorageService.addWords(separatedTrimmedWords);
     }

@@ -17,11 +17,11 @@ public class WordController implements WordApi {
     @Override
     @Status(HttpStatus.CREATED)
     public void addWords(String body) {
-        wordService.addWord(body);
+        wordService.addWords(body);
     }
 
     @Override
-    public String getWords() {
+    public String getWordsStatistic() {
         WordsStatistic wordsStatistic = wordService.getWordsStatistic();
         return wordMapper.fromWordsStatistic(wordsStatistic);
     }
