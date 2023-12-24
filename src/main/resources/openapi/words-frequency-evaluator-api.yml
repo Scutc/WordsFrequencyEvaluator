@@ -5,7 +5,7 @@ info:
   description: Service for adding words and getting statistics on them
 
 paths:
-  /words:
+  /api/words:
     get:
       tags:
         - Word

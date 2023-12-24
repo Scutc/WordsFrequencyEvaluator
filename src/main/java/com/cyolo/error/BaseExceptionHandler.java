@@ -3,11 +3,10 @@ package com.cyolo.error;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.server.exceptions.ExceptionHandler;
-import io.opentelemetry.api.trace.Span;
-import io.opentelemetry.api.trace.SpanContext;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 
 import static com.cyolo.error.CommonError.SERVICE_ERROR;
 
@@ -38,7 +37,7 @@ public class BaseExceptionHandler implements ExceptionHandler<RuntimeException, 
     }
 
     private HttpResponse<ErrorInfo> createResponse(BaseError error, Throwable cause, String... params) {
-        String traceId = getTraceId();
+        String traceId = MDC.get("trace_id");
         String description = String.format(error.getDescription(), (Object[]) params);
         ErrorInfo errorInfo = ErrorInfo.builder()
             .errorMessage(description)
@@ -47,11 +46,5 @@ public class BaseExceptionHandler implements ExceptionHandler<RuntimeException, 
             .traceId(traceId)
             .build();
         return HttpResponse.status(error.getHttpStatus()).body(errorInfo);
-    }
-
-    private String getTraceId() {
-        Span span = Span.current();
-        SpanContext spanContext = span.getSpanContext();
-        return spanContext.getTraceId();
     }
 }
