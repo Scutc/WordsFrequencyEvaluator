@@ -15,13 +15,13 @@ public class BaseExceptionHandler implements ExceptionHandler<RuntimeException, 
     public HttpResponse<ErrorInfo> handle(HttpRequest request, RuntimeException exception) {
         if (exception instanceof BaseException baseException) {
             if (baseException.getCause() == null) {
-                log.error(baseException.getMessage());
+                log.error(baseException.getMessage() + " " +  MDC.getCopyOfContextMap());
             } else {
-                log.error(baseException.getMessage(), baseException);
+                log.error(baseException.getMessage() + " " + MDC.getCopyOfContextMap(), baseException);
             }
             return createResponse(baseException);
         } else {
-            log.error(exception.getMessage(), exception);
+            log.error(exception.getMessage() + " " + MDC.getCopyOfContextMap(), exception);
             return createResponse(CommonError.SERVICE_ERROR, exception);
         }
     }

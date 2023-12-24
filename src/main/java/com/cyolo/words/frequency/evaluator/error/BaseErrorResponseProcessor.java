@@ -9,6 +9,9 @@ import io.micronaut.http.server.exceptions.response.ErrorContext;
 import io.micronaut.http.server.exceptions.response.ErrorResponseProcessor;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
+
+import static com.cyolo.words.frequency.evaluator.log.LoggingConstants.TRACE_ID;
 
 @Singleton
 @Slf4j
@@ -17,7 +20,8 @@ public class BaseErrorResponseProcessor implements ErrorResponseProcessor<ErrorI
 
     @Override
     public MutableHttpResponse<ErrorInfo> processResponse(ErrorContext errorContext, MutableHttpResponse<?> response) {
-        UUID errorUUID = UUID.randomUUID();
+        String traceId = MDC.get(TRACE_ID);
+        String errorUUID = traceId == null ? UUID.randomUUID().toString() : traceId;
         log(errorContext, errorUUID);
         Throwable cause = errorContext.getRootCause().orElse(null);
         ErrorInfo errorInfo = ErrorInfo.builder()
@@ -29,7 +33,7 @@ public class BaseErrorResponseProcessor implements ErrorResponseProcessor<ErrorI
         return response.body(errorInfo);
     }
 
-    private void log(ErrorContext errorContext, UUID uuid) {
+    private void log(ErrorContext errorContext, String uuid) {
         if (errorContext.hasErrors()) {
             String message = errorContext.getErrors().stream().map(Error::getMessage).collect(Collectors.joining("\n", "", "\nuuid: {}"));
             errorContext.getRootCause().ifPresentOrElse(e -> log.error(message, uuid, e), () -> log.error(message, uuid));

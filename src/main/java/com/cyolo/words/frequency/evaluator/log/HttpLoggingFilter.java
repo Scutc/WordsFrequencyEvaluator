@@ -33,7 +33,8 @@ public class HttpLoggingFilter implements HttpServerFilter {
     @Override
     public Publisher<MutableHttpResponse<?>> doFilter(HttpRequest<?> request, ServerFilterChain chain) {
         Instant startTime = Instant.now();
-        return Mono.from(chain.proceed(request)).doOnSubscribe(subscription -> logRequest(request))
+        logRequest(request);
+        return Mono.from(chain.proceed(request))
             .map(mutableHttpResponse -> {
                 long processingTime = Duration.between(startTime, Instant.now()).toMillis();
                 String requestPathTemplate = request.getAttribute(LoggingConstants.ROUTE_TEMPLATE_ATTRIBUTE, String.class)
