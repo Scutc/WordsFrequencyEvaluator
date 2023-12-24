@@ -23,6 +23,9 @@ public class WordServiceImpl implements WordService {
     @Override
     public void addWords(String words) {
         List<String> separatedTrimmedWords = separateAndTrimWords(words);
+        if (separatedTrimmedWords.isEmpty()) {
+            throw new BaseException(NO_WORDS_PROVIDED);
+        }
         wordStorageService.addWords(separatedTrimmedWords);
     }
 
@@ -49,11 +52,9 @@ public class WordServiceImpl implements WordService {
     }
 
     private List<String> separateAndTrimWords(String words) {
-        if (words.isBlank()) {
-            throw new BaseException(NO_WORDS_PROVIDED);
-        }
         return Arrays.stream(words.split(","))
             .map(String::trim)
+            .filter(word -> !word.isBlank())
             .collect(Collectors.toList());
     }
 }
