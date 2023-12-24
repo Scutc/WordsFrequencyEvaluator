@@ -12,7 +12,7 @@ public class BaseException extends RuntimeException {
         this.error = error;
         this.params = params;
     }
-    
+
     @Override
     public String getMessage() {
         return error.getCode() + " " + String.format(error.getDescription(), (Object[]) params);
