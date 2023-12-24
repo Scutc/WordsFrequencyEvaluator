@@ -16,6 +16,8 @@ import static com.cyolo.words.frequency.evaluator.error.WordsFrequencyEvaluatorE
 @Singleton
 @RequiredArgsConstructor
 public class WordServiceImpl implements WordService {
+    private static final int TOP_WORDS_NUM = 5;
+
     private final WordStorageService wordStorageService;
 
     @Override
@@ -27,15 +29,14 @@ public class WordServiceImpl implements WordService {
     @Override
     public WordsStatistic getWordsStatistic() {
         List<WordFrequency> wordFrequenciesSortedDesc = wordStorageService.getWordFrequenciesSortedDesc();
-
         if (wordFrequenciesSortedDesc.isEmpty()) {
             throw new BaseException(WORDS_NOT_FOUND);
         }
-        int numWordsToFetch = Math.min(5, wordFrequenciesSortedDesc.size());
-        List<WordFrequency> top5Words = wordFrequenciesSortedDesc.subList(0, numWordsToFetch);
+        int numWordsToFetch = Math.min(TOP_WORDS_NUM, wordFrequenciesSortedDesc.size());
+        List<WordFrequency> topWords = wordFrequenciesSortedDesc.subList(0, numWordsToFetch);
         int leastWordFrequency = wordFrequenciesSortedDesc.get(wordFrequenciesSortedDesc.size() - 1).frequency();
         int medianWordFrequency = calculateMedianFrequency(wordFrequenciesSortedDesc);
-        return new WordsStatistic(top5Words, leastWordFrequency, medianWordFrequency);
+        return new WordsStatistic(topWords, leastWordFrequency, medianWordFrequency);
     }
 
     private int calculateMedianFrequency(List<WordFrequency> wordFrequencies) {
